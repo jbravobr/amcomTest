@@ -114,12 +114,13 @@ namespace amcom.DemoApp.ViewModels
 						.Handle<Exception>()
 						.FallbackAsync(async (task) => _dialogService.ShowToast(EnumToastType.Warning, "Erro ao detectar posição geográfica"));
 
+					IEnumerable addresses;
 					_geoService.DesiredAccuracy = 50;
 					var position = await geoPolicy.ExecuteAsync(async () => await _geoService.GetPositionAsync(TimeSpan.FromSeconds(10)));
 					if (position == null)
 						_dialogService.ShowToast(EnumToastType.Warning, "Erro ao detectar posição geográfica");
-
-					var addresses = await geoPolicy.ExecuteAsync(async () => await _geoService.GetAddressesForPositionAsync(position));
+					else
+						addresses = await geoPolicy.ExecuteAsync(async () => await _geoService.GetAddressesForPositionAsync(position));
 
 					if (Photos == null)
 						Photos = new List<Photo>();
