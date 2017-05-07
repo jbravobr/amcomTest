@@ -8,6 +8,7 @@ using Plugin.Media.Abstractions;
 using PropertyChanged;
 using Prism.Navigation;
 using Plugin.Geolocator.Abstractions;
+using System.Collections;
 
 namespace amcom.DemoApp.ViewModels
 {
@@ -114,7 +115,7 @@ namespace amcom.DemoApp.ViewModels
 						.Handle<Exception>()
 						.FallbackAsync(async (task) => _dialogService.ShowToast(EnumToastType.Warning, "Erro ao detectar posição geográfica"));
 
-					IEnumerable addresses;
+					IEnumerable<Plugin.Geolocator.Abstractions.Address> addresses = null;
 					_geoService.DesiredAccuracy = 50;
 					var position = await geoPolicy.ExecuteAsync(async () => await _geoService.GetPositionAsync(TimeSpan.FromSeconds(10)));
 					if (position == null)
