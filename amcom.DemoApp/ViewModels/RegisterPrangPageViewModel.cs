@@ -141,6 +141,7 @@ namespace amcom.DemoApp.ViewModels
 					});
 
 					CountPhotos++;
+					IsPhotoTake = true;
 					fileName = string.Empty;
 				});
 			}
