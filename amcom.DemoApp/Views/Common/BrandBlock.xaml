@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="amcom.DemoApp.BrandBlock"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	         xmlns:local="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
+             Padding="20">
+    <Grid ColumnSpacing="10"
+          Padding="0"
+          Style="{x:Static local:Theme.BrandContainerStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               WidthRequest="64"
+               HeightRequest="64"
+               BackgroundColor="Transparent"
+               Source="{x:Static local:Theme.BrandImage}" />
+
+        <StackLayout Grid.Column="1"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"
+                     Orientation="Vertical"
+                     Spacing="0">
+            <Label FontAttributes="Bold"
+                   Style="{x:Static local:Theme.BrandNameStyle}"
+                   Text="Sliphis"
+                   VerticalTextAlignment="Start" />
+            <Label Style="{x:Static local:Theme.BrandNameStyle}"
+                   Text="[DemoApp]"
+                   VerticalTextAlignment="Start" />
+        </StackLayout>
+
+    </Grid>
+</ContentView>

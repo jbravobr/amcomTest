@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="amcom.DemoApp.Views.MenuPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             Title="Menu"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Icon="{x:Static local:Theme.HamburguerIcon}"
+             Style="{x:Static local:Theme.MainMenuStyle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+	
+    <ContentPage.Content>
+        <Grid Margin="0,0,0,10"
+              VerticalOptions="FillAndExpand"
+              Padding="0,20,0,0"
+              RowSpacing="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  RowSpacing="0">
+
+                <!--  LOGO  -->
+                <local:BrandBlock Grid.Row="0" />
+
+            </Grid>
+            <ListView x:Name="menuListView"
+					  Grid.Row="1"
+                      VerticalOptions="FillAndExpand"
+                      CachingStrategy="RecycleElement"
+                      ItemsSource="{Binding Menus}"
+                      SeparatorVisibility="None"
+                      Style="{x:Static local:Theme.MainMenuListViewStyle}">
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior Command="{Binding ItemTappedCommand}"
+                                              EventArgsConverter="{StaticResource itemTappedEventArgsConverter}"
+                                              EventName="ItemTapped" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <local:MainMenuItemTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="amcom.DemoApp.MainMenuItemTemplate"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+	         xmlns:local="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Padding="24,0,0,0">
+        <!--  ICON  -->
+        <Label AbsoluteLayout.LayoutBounds="0, 0.5, 20, 1"
+               AbsoluteLayout.LayoutFlags="XProportional, YProportional, HeightProportional"
+               HorizontalTextAlignment="Start"
+               Style="{x:Static local:Theme.MainMenuIconStyle}"
+               Text="{Binding Icon}"
+               VerticalTextAlignment="Center" />
+
+        <!--  FULL LABEL  -->
+        <Label Margin="0,0,0,0"
+               AbsoluteLayout.LayoutBounds="24, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="WidthProportional, HeightProportional"
+               Style="{x:Static local:Theme.MainMenuLabelStyle}"
+               Text="{Binding Name}"
+               VerticalTextAlignment="Center" />
+    </AbsoluteLayout>
+</ContentView>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="amcom.DemoApp.Views.PrangCatalogPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
+             Title="Avarias Registradas"
+             prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ListView x:Name="carsListView"
+                  CachingStrategy="RecycleElement"
+                  HasUnevenRows="true" 
+                  ItemsSource="{Binding Cars}"
+                  SeparatorVisibility="None">
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior Command="{Binding CarItemTappedCommand}"
+                                          EventArgsConverter="{StaticResource itemTappedEventArgsConverter}"
+                                          EventName="ItemTapped" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <local:PrangCatalogItemTemplate />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

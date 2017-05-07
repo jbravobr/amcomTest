@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="amcom.DemoApp.GalleryHeaderStyleTemplate"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:templates="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal">
+            <Label x:Name="HeaderIcon"
+                   FontFamily="{x:Static templates:Theme.IconsFontFamily}"
+                   FontSize="18"
+                   Style="{x:Static templates:Theme.SocialHeaderStyle}"
+                   Text="{x:Static templates:GrialShapesFont.InsertPhoto}"
+                   TranslationY="1" />
+            <Label x:Name="HeaderLabel"
+                   Style="{x:Static templates:Theme.SocialHeaderStyle}"
+                   Text="&#032; FOTOS" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

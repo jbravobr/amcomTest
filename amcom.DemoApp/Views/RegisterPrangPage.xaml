@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="amcom.DemoApp.Views.RegisterPrangPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             Title="Novo Registro"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IntToStringConverter x:Key="intInvert" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView Padding="{x:Static local:Theme.MainWrapperPadding}">
+
+            <!--  WRAPPER  -->
+            <Grid Padding="20" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  -NAME FIELD  -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  NAME ENTRY  -->
+                    <Entry Grid.Row="0"
+                           HeightRequest="40"
+                           BackgroundColor="Transparent"
+                           Placeholder="Nome do veículo"
+                           Text="{Binding Name}" />
+                </Grid>
+                <StackLayout Grid.Row="1" Spacing="2">
+
+                    <!--  DESCRIPTION LABEL  -->
+                    <Label FontSize="16" Text="Descrição do veículo" />
+
+                    <!--  DESCRIPTION ENTRY  -->
+                    <StackLayout BackgroundColor="White">
+                        <StackLayout BackgroundColor="Black" Padding="1">
+                            <local:EditorWithNoLine WidthRequest="90"
+                                                    HeightRequest="200"
+                                                    BackgroundColor="White"
+                                                    Text="{Binding Description}" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Grid.Row="4"
+                             Margin="0,5,0,0"
+                             Orientation="Horizontal"
+                             Spacing="1">
+                    <Label HorizontalOptions="Center"
+                           FontSize="18"
+                           HorizontalTextAlignment="Start"
+                           Style="{x:Static local:Theme.FontIcon}"
+                           Text="{x:Static local:GrialShapesFont.PhotoCamera}" />
+                    <Label HorizontalOptions="Start"
+                           FontSize="16"
+                           HorizontalTextAlignment="Start"
+                           Text="Nro de fotos recolhidas: " />
+                    <Label HorizontalOptions="Start"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           HorizontalTextAlignment="Start"
+                           Text="{Binding CountPhotos,
+                                          Converter={StaticResource intInvert}}" />
+                </StackLayout>
+
+                <!--  PHOTO BUTTON  -->
+                <Button Grid.Row="5"
+                        WidthRequest="200"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="End"
+                        Command="{Binding TakePhotoCommand}"
+                        Style="{x:Static local:Theme.PhotoButtonStyle}"
+                        Text="CAPTURAR FOTO" />
+
+                <!--  SAVE BUTTON  -->
+                <Button Grid.Row="6"
+                        WidthRequest="200"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="End"
+                        Command="{Binding SaveCommand}"
+                        IsVisible="{Binding IsPhotoTake}"
+                        Style="{x:Static local:Theme.PrimaryActionButtonStyle}"
+                        Text="SALVAR" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
