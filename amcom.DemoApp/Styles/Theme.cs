@@ -79,12 +79,12 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = View.VerticalOptionsProperty,
-					Value = "End"
+					Value = LayoutOptions.End
 				},
 				new Setter
 				{
 					Property = View.HorizontalOptionsProperty,
-					Value = "Start"
+					Value = LayoutOptions.Start
 				},
 				new Setter
 				{
@@ -242,7 +242,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = View.VerticalOptionsProperty,
-					Value = "CenterAndExpand"
+					Value = LayoutOptions.CenterAndExpand
 				},
 				new Setter
 				{
@@ -257,7 +257,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = Label.VerticalTextAlignmentProperty,
-					Value = "Center"
+					Value = TextAlignment.Center
 				},
 				new Setter
 				{
@@ -291,7 +291,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = ListView.SeparatorVisibilityProperty,
-					Value = "None"
+					Value = SeparatorVisibility.None
 				},
 				new Setter
 				{
@@ -328,7 +328,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = View.VerticalOptionsProperty,
-					Value = "CenterAndExpand"
+					Value = LayoutOptions.CenterAndExpand
 				}
 			}
 		};
@@ -345,7 +345,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = Label.VerticalTextAlignmentProperty,
-					Value = "Center"
+					Value = TextAlignment.Center
 				},
 				new Setter
 				{
@@ -360,17 +360,17 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = View.HorizontalOptionsProperty,
-					Value = "StartAndExpand"
+					Value = LayoutOptions.StartAndExpand
 				},
 				new Setter
 				{
 					Property = View.VerticalOptionsProperty,
-					Value = "CenterAndExpand"
+					Value = LayoutOptions.CenterAndExpand
 				},
 				new Setter
 				{
 					Property = Label.LineBreakModeProperty,
-					Value = "TailTruncation"
+					Value = LineBreakMode.TailTruncation
 				}
 			}
 		};
@@ -382,12 +382,12 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = View.HorizontalOptionsProperty,
-					Value = "Start"
+					Value = LayoutOptions.Start
 				},
 				new Setter
 				{
 					Property = View.VerticalOptionsProperty,
-					Value = "Start"
+					Value = LayoutOptions.Start
 				}
 			}
 		};
@@ -438,7 +438,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = AbsoluteLayout.LayoutFlagsProperty,
-					Value = "WidthProportional"
+					Value = AbsoluteLayoutFlags.WidthProportional
 				}
 			}
 		};
@@ -456,7 +456,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = Label.VerticalTextAlignmentProperty,
-					Value = "End"
+					Value = TextAlignment.End
 				},
 				new Setter
 				{
@@ -487,7 +487,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = Label.VerticalTextAlignmentProperty,
-					Value = "End"
+					Value = TextAlignment.End
 				},
 				new Setter
 				{
@@ -497,7 +497,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = Label.FontAttributesProperty,
-					Value = "Bold"
+					Value = FontAttributes.Bold
 				},
 				new Setter
 				{
@@ -547,7 +547,7 @@ namespace amcom.DemoApp
 				new Setter
 				{
 					Property = AbsoluteLayout.LayoutFlagsProperty,
-					Value = "WidthProportional, YProportional"
+					Value = AbsoluteLayoutFlags.WidthProportional & AbsoluteLayoutFlags.YProportional
 				}
 			}
 		};

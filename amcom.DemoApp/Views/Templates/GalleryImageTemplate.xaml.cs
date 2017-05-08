@@ -9,6 +9,10 @@ namespace amcom.DemoApp.Views
 		{
 			InitializeComponent();
 		}
+		protected override void OnBindingContextChanged()
+		{
+			System.Diagnostics.Debug.WriteLine(BindingContext?.GetType()?.Name);
+		}
 
 		public static BindableProperty ImageProperty =
 			BindableProperty.Create(

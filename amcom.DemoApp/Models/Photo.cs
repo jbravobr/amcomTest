@@ -16,6 +16,8 @@ namespace amcom.DemoApp
 		[OneToOne]
 		public Geocoordinate Geocoordinate { get; set; }
 
+		public string Address { get; set; }
+
 		[ForeignKey(typeof(Car))]
 		public int CarId { get; set; }
 	}
