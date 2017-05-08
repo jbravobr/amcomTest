@@ -9,14 +9,9 @@ namespace amcom.DemoApp
 		public DateTimeOffset PickDate { get; set; }
 		public long Size { get; set; }
 		public string PhotoStream { get; set; }
-
-		[ForeignKey(typeof(Geocoordinate))]
-		public int GeocoordinateId { get; set; }
-
-		[OneToOne]
-		public Geocoordinate Geocoordinate { get; set; }
-
 		public string Address { get; set; }
+		public double Latitude { get; set; }
+		public double Longitude { get; set; }
 
 		[ForeignKey(typeof(Car))]
 		public int CarId { get; set; }

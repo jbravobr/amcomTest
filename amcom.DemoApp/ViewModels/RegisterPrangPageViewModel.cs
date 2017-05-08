@@ -66,7 +66,7 @@ namespace amcom.DemoApp.ViewModels
 					if (insertedCarId > 0)
 					{
 						var insertedCar = await policy.ExecuteAsync(async () => await _carService.GetById(insertedCarId));
-						if (insertedCar != null && insertedCar is Car)
+						if (insertedCar != null)
 						{
 							Photos.ForEach((photo) => photo.CarId = insertedCar.Id);
 							insertedCar.Photos = Photos;
@@ -122,7 +122,7 @@ namespace amcom.DemoApp.ViewModels
 						_dialogService.ShowToast(EnumToastType.Error, "Erro ao capturar foto, por favor tente novamente");
 						return;
 					}
-
+					_dialogService.ShowLoading("Processando imagem");
 					var geoPolicy = Policy
 						.Handle<Exception>()
 						.FallbackAsync(async (task) => _dialogService.ShowToast(EnumToastType.Warning, "Erro ao detectar posição geográfica"));
@@ -142,22 +142,20 @@ namespace amcom.DemoApp.ViewModels
 					Photos.Add(new Photo
 					{
 						Name = fileName,
-						PhotoStream = fileName,
+						PhotoStream = file.AlbumPath,
 						PickDate = DateTimeOffset.Now,
 						Size = file.GetStream().Length,
-						Geocoordinate = new Geocoordinate
-						{
-							Latitude = position.Latitude,
-							Longitude = position.Longitude,
-							Address = addresses != null && addresses.Any() ?
-																	$"{addresses.FirstOrDefault().Thoroughfare},{addresses.FirstOrDefault().Locality},{addresses.FirstOrDefault().CountryName}" :
+						Latitude = position.Latitude,
+						Longitude = position.Longitude,
+						Address = addresses != null && addresses.Any() ?
+																	$"{addresses.FirstOrDefault().Thoroughfare}, {addresses.FirstOrDefault().Locality}, {addresses.FirstOrDefault().CountryName}" :
 																	string.Empty
-						}
 					});
 
 					CountPhotos++;
 					IsPhotoTake = true;
 					fileName = string.Empty;
+					_dialogService.HideLoading();
 				});
 			}
 		}

@@ -21,7 +21,6 @@ namespace amcom.DemoApp
 		void CheckDatabase()
 		{
 			App.AppSQLiteConn.CreateTable<Car>(SQLite.CreateFlags.None);
-			App.AppSQLiteConn.CreateTable<Geocoordinate>(SQLite.CreateFlags.None);
 			App.AppSQLiteConn.CreateTable<Photo>(SQLite.CreateFlags.None);
 			App.AppSQLiteConn.CreateTable<User>(SQLite.CreateFlags.None);
 			App.AppSQLiteConn.CreateTable<Menu>(SQLite.CreateFlags.None);
@@ -54,7 +53,7 @@ namespace amcom.DemoApp
 		public T GetById(int pkId)
 		{
 			lock (_lock)
-				return App.AppSQLiteConn.Get<T>(pkId);
+				return App.AppSQLiteConn.GetWithChildren<T>(pkId, recursive: true);
 		}
 
 		public T GetByPredicate(Expression<Func<T, bool>> predicate)
@@ -84,7 +83,11 @@ namespace amcom.DemoApp
 		public int InsertAndReturnInsertedPK(T TEntity)
 		{
 			lock (_lock)
-				return App.AppSQLiteConn.Insert(TEntity);
+			{
+				App.AppSQLiteConn.InsertOrReplaceWithChildren(TEntity);
+				var last = App.AppSQLiteConn.GetAllWithChildren<T>(null, recursive: true);
+				return last.Last().Id;
+			}
 		}
 	}
 }

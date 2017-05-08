@@ -233,7 +233,7 @@ namespace amcom.DemoApp.ViewModels
 
 			var cars = await policy.ExecuteAsync(async () => await _appCarService.GetAll());
 			if (cars != null && cars.Any())
-				Cars = cars;
+				Cars = cars.OrderByDescending(x => x.Id).ToList();
 		}
 
 		public void OnNavigatedFrom(NavigationParameters parameters)

@@ -2,6 +2,7 @@
 using Prism.Navigation;
 using PropertyChanged;
 using System.Threading.Tasks;
+using Plugin.Media.Abstractions;
 
 namespace amcom.DemoApp.ViewModels
 {
@@ -9,6 +10,7 @@ namespace amcom.DemoApp.ViewModels
 	public class PrangDetailPageViewModel : BindableBase, INavigationAware
 	{
 		readonly IDialogsFunctions _dialogService;
+		readonly IMedia _mediaService;
 
 		public Car Car { get; set; }
 		public string Title { get; set; }
@@ -34,6 +36,7 @@ namespace amcom.DemoApp.ViewModels
 
 				await Task.Delay(5000);
 				Car = parameters["Car"] as Car;
+
 				Title = Car.Name;
 
 				_dialogService.HideLoading();

@@ -34,7 +34,6 @@
 		<Compile Include="Models\Car.cs" />
 		<Compile Include="Models\EntityBase.cs" />
 		<Compile Include="Models\Photo.cs" />
-		<Compile Include="Models\Geocoordinate.cs" />
 		<Compile Include="Infrastructure\Configuration\DBContext.cs" />
 		<Compile Include="DependencyServices\ISQLite.cs" />
 		<Compile Include="Infrastructure\Repositories\IRepositoryBase.cs" />
