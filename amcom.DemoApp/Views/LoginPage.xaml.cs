@@ -9,5 +9,10 @@ namespace amcom.DemoApp.Views
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
 		}
+
+		protected override bool OnBackButtonPressed()
+		{
+			return false;
+		}
 	}
 }

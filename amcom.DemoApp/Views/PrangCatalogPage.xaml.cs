@@ -13,5 +13,10 @@ namespace amcom.DemoApp.Views
 				((ListView)sender).SelectedItem = null;
 			};
 		}
+
+		protected override bool OnBackButtonPressed()
+		{
+			return false;
+		}
 	}
 }

@@ -236,14 +236,14 @@ namespace amcom.DemoApp.ViewModels
 				Cars = cars;
 		}
 
-		public async void OnNavigatedFrom(NavigationParameters parameters)
+		public void OnNavigatedFrom(NavigationParameters parameters)
+		{
+		}
+
+		public async void OnNavigatedTo(NavigationParameters parameters)
 		{
 			if (parameters.ContainsKey("Reload"))
 				await ReloadingMainList();
-		}
-
-		public void OnNavigatedTo(NavigationParameters parameters)
-		{
 		}
 
 		public void OnNavigatingTo(NavigationParameters parameters)

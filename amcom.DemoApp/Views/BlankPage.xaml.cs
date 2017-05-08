@@ -8,6 +8,10 @@ namespace amcom.DemoApp.Views
 		{
 			InitializeComponent();
 		}
+
+		protected override bool OnBackButtonPressed()
+		{
+			return false;
+		}
 	}
 }
-
