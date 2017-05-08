@@ -12,7 +12,7 @@ namespace amcom.DemoApp.Views
 
 		protected override bool OnBackButtonPressed()
 		{
-			return false;
+			return true;
 		}
 	}
 }

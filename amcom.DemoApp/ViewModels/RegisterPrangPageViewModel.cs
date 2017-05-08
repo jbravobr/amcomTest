@@ -71,7 +71,7 @@ namespace amcom.DemoApp.ViewModels
 							Photos.ForEach((photo) => photo.CarId = insertedCar.Id);
 							insertedCar.Photos = Photos;
 
-							await policy.ExecuteAsync(async () => await _carService.Update(insertedCar));
+							await policy.ExecuteAsync(async () => await _carService.Insert(insertedCar));
 
 							_dialogService.ShowToast(EnumToastType.Success, "Dados salvos com sucesso");
 
