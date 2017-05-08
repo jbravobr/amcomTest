@@ -6,6 +6,8 @@ namespace amcom.DemoApp
 {
 	public interface IRepositoryBase<T> where T : EntityBase
 	{
+		int InsertAndReturnInsertedPK(T TEntity);
+
 		void Insert(T TEntity);
 		void Update(T TEntity);
 		void Delete(T TEntity);

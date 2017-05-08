@@ -57,7 +57,7 @@ namespace amcom.DemoApp.ViewModels
 					}
 
 					_sessionService.SaveSession();
-					await _navigationService.NavigateAsync("RootPage/BaseNavigationPage/PrangCatalogPage");
+					await _navigationService.NavigateAsync("RootPage");
 				});
 			}
 		}

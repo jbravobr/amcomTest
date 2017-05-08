@@ -49,6 +49,11 @@ namespace amcom.DemoApp
 			await Task.Run(() => _repository.Insert(TEntity));
 		}
 
+		public async Task<int> InsertAndReturnInsertedPK(T TEntity)
+		{
+			return await Task.Run(() => _repository.InsertAndReturnInsertedPK(TEntity));
+		}
+
 		public async Task Update(T TEntity)
 		{
 			await Task.Run(() => _repository.Update(TEntity));

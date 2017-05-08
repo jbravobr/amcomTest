@@ -7,6 +7,8 @@ namespace amcom.DemoApp
 {
 	public interface IApplicationService<T> where T : EntityBase
 	{
+		Task<int> InsertAndReturnInsertedPK(T TEntity);
+
 		Task Insert(T TEntity);
 		Task Update(T TEntity);
 		Task Delete(T TEntity);

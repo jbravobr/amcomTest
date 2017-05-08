@@ -25,7 +25,7 @@
                      Spacing="0">
             <Label FontAttributes="Bold"
                    Style="{x:Static local:Theme.BrandNameStyle}"
-                   Text="Sliphis"
+                   Text="amcom"
                    VerticalTextAlignment="Start" />
             <Label Style="{x:Static local:Theme.BrandNameStyle}"
                    Text="[DemoApp]"

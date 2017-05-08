@@ -6,8 +6,10 @@
              xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:theme="clr-namespace:amcom.DemoApp;assembly=amcom.DemoApp"
-             prism:ViewModelLocator.AutowireViewModel="True">
+             prism:ViewModelLocator.AutowireViewModel="True"
+			 BackgroundColor="Black">
     <!--  MAIN CONTAINER  -->
+	
     <Grid>
         <!--  BACKGROUND IMAGE  -->
         <Image Style="{x:Static theme:Theme.LoginBackgroundImage}" />
@@ -81,15 +83,7 @@
                                             Style="{x:Static theme:Theme.ArtinaLoginEntryStyle}"
                                             Text="{Binding user.Login}"
                                             TextColor="{x:Static theme:Theme.OverImageTextColor}">
-                            <controls:LineEntry.Behaviors>
-                                <theme:EmailValidatorBehavior x:Name="emailValidator" />
-                            </controls:LineEntry.Behaviors>
                         </controls:LineEntry>
-                        <!--<Label HorizontalOptions="Start"
-                               IsVisible="{Binding Source={x:Reference Name=emailValidator},
-                                                   Path=IsValid}"
-                               Style="{x:Static theme:Theme.ValidationEntryErrorStyle}"
-                               Text="Por favor entre com um e-mail válido" />-->
                     </StackLayout>
                     <!--  -PASSWORD FIELD  -->
                     <controls:LineEntry Grid.Row="2"

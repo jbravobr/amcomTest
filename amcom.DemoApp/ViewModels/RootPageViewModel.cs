@@ -11,7 +11,7 @@ using PropertyChanged;
 namespace amcom.DemoApp.ViewModels
 {
 	[ImplementPropertyChanged]
-	public class RootPageViewModel : BindableBase
+	public class RootPageViewModel : BindableBase, INavigationAware
 	{
 		readonly IApplicationService<Menu> _appMenuService;
 		readonly IApplicationService<Car> _appCarService;
@@ -223,6 +223,31 @@ namespace amcom.DemoApp.ViewModels
 
 			var ret = await policy.ExecuteAsync(async () => await _appCarService.GetAll());
 			return ret;
+		}
+
+		async Task ReloadingMainList()
+		{
+			var policy = Policy
+				.Handle<Exception>()
+				.FallbackAsync(async (task) => _dialogsService.ShowToast(EnumToastType.Error, "Erro ao recarregar lista de avarias"));
+
+			var cars = await policy.ExecuteAsync(async () => await _appCarService.GetAll());
+			if (cars != null && cars.Any())
+				Cars = cars;
+		}
+
+		public async void OnNavigatedFrom(NavigationParameters parameters)
+		{
+			if (parameters.ContainsKey("Reload"))
+				await ReloadingMainList();
+		}
+
+		public void OnNavigatedTo(NavigationParameters parameters)
+		{
+		}
+
+		public void OnNavigatingTo(NavigationParameters parameters)
+		{
 		}
 	}
 }

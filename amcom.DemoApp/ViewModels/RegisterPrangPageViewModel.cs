@@ -8,7 +8,7 @@ using Plugin.Media.Abstractions;
 using PropertyChanged;
 using Prism.Navigation;
 using Plugin.Geolocator.Abstractions;
-using System.Collections;
+using System.Threading.Tasks;
 
 namespace amcom.DemoApp.ViewModels
 {
@@ -53,22 +53,34 @@ namespace amcom.DemoApp.ViewModels
 				{
 					var car = new Car
 					{
-						Name = this.Name,
-						Description = this.Description,
-						Photos = this.Photos
+						Name = Name,
+						Description = Description,
+						Image = "carunknown.jpg"
 					};
 
 					var policy = Policy
 						.Handle<Exception>()
 						.FallbackAsync(async (task) => _dialogService.ShowToast(EnumToastType.Error, "Erro ao salvar registro"));
 
-					await _carService.Insert(car);
-
-					var carRet = await _carService.GetAll();
-					if (carRet.OrderByDescending(x => x.Id).FirstOrDefault().Name == this.Name)
+					var insertedCarId = await policy.ExecuteAsync(async () => await _carService.InsertAndReturnInsertedPK(car));
+					if (insertedCarId > 0)
 					{
-						_dialogService.ShowToast(EnumToastType.Success, "Dados salvos com sucesso");
-						await _navigationService.GoBackAsync();
+						var insertedCar = await policy.ExecuteAsync(async () => await _carService.GetById(insertedCarId));
+						if (insertedCar != null && insertedCar is Car)
+						{
+							Photos.ForEach((photo) => photo.CarId = insertedCar.Id);
+							insertedCar.Photos = Photos;
+
+							await policy.ExecuteAsync(async () => await _carService.Update(insertedCar));
+
+							_dialogService.ShowToast(EnumToastType.Success, "Dados salvos com sucesso");
+
+							await Task.Delay(3000);
+
+							var parameters = new NavigationParameters();
+							parameters.Add("Reload", true);
+							await _navigationService.GoBackAsync(parameters);
+						}
 					}
 					else
 					{
@@ -115,8 +127,9 @@ namespace amcom.DemoApp.ViewModels
 						.Handle<Exception>()
 						.FallbackAsync(async (task) => _dialogService.ShowToast(EnumToastType.Warning, "Erro ao detectar posição geográfica"));
 
-					IEnumerable<Plugin.Geolocator.Abstractions.Address> addresses = null;
+					IEnumerable<Address> addresses = null;
 					_geoService.DesiredAccuracy = 50;
+
 					var position = await geoPolicy.ExecuteAsync(async () => await _geoService.GetPositionAsync(TimeSpan.FromSeconds(10)));
 					if (position == null)
 						_dialogService.ShowToast(EnumToastType.Warning, "Erro ao detectar posição geográfica");

@@ -29,6 +29,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>iOS Team Provisioning Profile: com.sliphis.client</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -182,9 +183,6 @@
     <Reference Include="FFImageLoading.Forms.Touch">
       <HintPath>..\packages\Xamarin.FFImageLoading.Forms.2.2.9\lib\Xamarin.iOS10\FFImageLoading.Forms.Touch.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Acr.Settings">
       <HintPath>..\packages\Acr.Settings.6.0.1\lib\Xamarin.iOS10\Acr.Settings.dll</HintPath>
     </Reference>
@@ -208,6 +206,10 @@
     </Reference>
     <Reference Include="Plugin.Geolocator">
       <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.0.55-beta\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +266,6 @@
     <BundleResource Include="Resources\car15.png" />
     <BundleResource Include="Resources\car16.png" />
     <BundleResource Include="Resources\car17.png" />
-    <BundleResource Include="Resources\servishero_loading.json" />
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\hamburguer_icon.png" />
     <BundleResource Include="Resources\quebrado1.png" />
@@ -278,6 +279,10 @@
     <BundleResource Include="Resources\fontawesome-webfont.ttf" />
     <BundleResource Include="Resources\grialshapes.ttf" />
     <BundleResource Include="Resources\ionicons.ttf" />
+    <BundleResource Include="Resources\servishero_loading.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\carunknown.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GrialLicense" />

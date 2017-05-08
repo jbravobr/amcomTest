@@ -80,5 +80,11 @@ namespace amcom.DemoApp
 			lock (_lock)
 				App.AppSQLiteConn.UpdateWithChildren(TEntity);
 		}
+
+		public int InsertAndReturnInsertedPK(T TEntity)
+		{
+			lock (_lock)
+				return App.AppSQLiteConn.Insert(TEntity);
+		}
 	}
 }
